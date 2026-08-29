@@ -1,0 +1,138 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg-secondary);
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 0;
+}
+
+.backBtn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.backBtn path {
+  stroke: var(--fg-brand);
+}
+
+.saveBtn {
+  border: none;
+  background: none;
+  font-size: var(--text-button-size);
+  font-weight: var(--text-button-weight);
+  letter-spacing: var(--text-button-spacing);
+  text-transform: var(--text-button-transform);
+  color: var(--tx-brand);
+  cursor: pointer;
+  padding: 4px 0;
+  font-family: inherit;
+}
+
+.saveBtn:disabled {
+  color: var(--tx-disabled);
+  cursor: default;
+}
+
+.content {
+  flex: 1;
+  padding: 40px 24px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.exerciseName {
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  color: var(--tx-primary);
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.equipmentLabel {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-spacing);
+  text-transform: var(--text-label-transform);
+  color: var(--tx-secondary);
+  margin: 0 0 64px;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stepper {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-xl);
+  background: var(--bg-brand-secondary);
+  color: var(--fg-brand);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.1s;
+}
+
+.stepper:active {
+  opacity: 0.7;
+}
+
+.inputWrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  border-bottom: 2.5px solid var(--bg-brand-primary);
+  padding-bottom: 10px;
+}
+
+.weightInput {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-input-pr-size);
+  font-weight: var(--text-input-pr-weight);
+  color: var(--tx-primary);
+  border: none;
+  background: none;
+  outline: none;
+  font-family: inherit;
+  -moz-appearance: textfield;
+  padding: 0;
+}
+
+.weightInput::-webkit-outer-spin-button,
+.weightInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.weightInput::placeholder {
+  color: var(--tx-disabled);
+}
+
+.unit {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--tx-secondary);
+  flex-shrink: 0;
+}

@@ -1,3 +1,95 @@
+:root {
+  /* Text */
+  --tx-primary: #363D45;
+  --tx-secondary: #818E9C;
+  --tx-tertiary: #AFB7C0;
+  --tx-disabled: #C6CCD2;
+  --tx-white-static: #FFFFFF;
+  --tx-brand: #3E3EE0;
+  --tx-danger: #CC0F00;
+
+  /* Foreground */
+  --fg-primary: #363D45;
+  --fg-secondary: #818E9C;
+  --fg-tertiary: #AFB7C0;
+  --fg-disabled: #C6CCD2;
+  --fg-brand: #3E3EE0;
+  --fg-danger: #CC0F00;
+
+  /* Background */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --bg-tertiary: #E8EAED;
+  --bg-quaternary: #DDE0E4;
+  --bg-brand-primary: #3E3EE0;
+  --bg-brand-secondary: #EDEDFC;
+  --bg-danger: #CC0F00;
+  --bg-danger-secondary: #FFEBEA;
+
+  /* Typography — Font: Inter */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Text styles */
+  --text-h1-size: 28px;
+  --text-h1-weight: 900;
+  --text-h1-spacing: 0px;
+
+  --text-h2-size: 22px;
+  --text-h2-weight: 900;
+  --text-h2-spacing: 0px;
+
+  --text-h3-size: 16px;
+  --text-h3-weight: 900;
+  --text-h3-spacing: 0px;
+
+  --text-body-size: 16px;
+  --text-body-weight: 500;
+  --text-body-spacing: 0px;
+
+  --text-description-size: 14px;
+  --text-description-weight: 500;
+  --text-description-spacing: 0px;
+
+  --text-label-size: 14px;
+  --text-label-weight: 800;
+  --text-label-spacing: 1px;
+  --text-label-transform: uppercase;
+
+  --text-badge-size: 12px;
+  --text-badge-weight: 900;
+  --text-badge-spacing: 0px;
+
+  --text-button-size: 16px;
+  --text-button-weight: 800;
+  --text-button-spacing: 1px;
+  --text-button-transform: uppercase;
+
+  --text-input-pr-size: 56px;
+  --text-input-pr-weight: 900;
+
+  --text-input-unit-size: 36px;
+  --text-input-unit-weight: 500;
+
+  /* Spacing */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -9,11 +101,11 @@ html, body {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 15px;
+  font-family: var(--font-family);
+  font-size: var(--text-body-size);
   line-height: 1.4;
-  color: #111111;
-  background: #FFFFFF;
+  color: var(--tx-primary);
+  background: var(--bg-secondary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -23,6 +115,30 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  body {
+    background: var(--bg-tertiary);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 0 32px;
+    min-height: 100dvh;
+  }
+
+  #root {
+    width: 390px;
+    min-height: calc(100dvh - 64px);
+    max-height: calc(100dvh - 64px);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+    overflow-x: clip;
+    overflow-y: auto;
+    background: var(--bg-secondary);
+    /* Contains position:fixed children (FAB, sticky buttons) within this container */
+    transform: translateZ(0);
+  }
 }
 
 h1, h2, h3, h4 {

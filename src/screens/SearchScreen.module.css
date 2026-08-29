@@ -1,0 +1,140 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg-secondary);
+}
+
+.modeBanner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: var(--bg-brand-secondary, #EDEDFC);
+  color: var(--fg-brand, #3E3EE0);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-spacing);
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 24px 0;
+  background: var(--bg-secondary);
+}
+
+.inputWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-primary);
+  border-radius: 100px;
+  padding: 10px 14px;
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  color: var(--fg-secondary);
+}
+
+/* CSS overrides SVG presentation attributes for icon theming */
+.searchIcon circle,
+.searchIcon path {
+  stroke: var(--fg-secondary);
+}
+
+.input {
+  flex: 1;
+  border: none;
+  background: none;
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  color: var(--tx-primary);
+  outline: none;
+  font-family: inherit;
+  min-width: 0;
+}
+
+.input::placeholder {
+  color: var(--tx-secondary); /* TODO: verify token — was #8E8E93 */
+}
+
+.clearBtn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.clearBtn circle {
+  fill: var(--bg-tertiary); /* TODO: verify token — was #C7C7CC */
+}
+
+.clearBtn path {
+  stroke: var(--tx-white-static);
+}
+
+.cancelBtn {
+  border: none;
+  background: none;
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-brand);
+  cursor: pointer;
+  padding: 4px 0;
+  flex-shrink: 0;
+  font-family: inherit;
+}
+
+.content {
+  flex: 1;
+  padding: 24px 24px 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.resultsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.emptyTitle {
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  color: var(--tx-primary);
+  margin: 0;
+}
+
+.emptySubtitle {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-secondary);
+  margin: 0;
+}
+
+.loadingMore,
+.endOfResults {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-tertiary);
+  text-align: center;
+  padding: 16px 0;
+  margin: 0;
+}

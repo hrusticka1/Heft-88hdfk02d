@@ -16,3 +16,11 @@ export type LogEntry = {
   isPR: boolean
   userId: string
 }
+
+export type WorkoutSet = {
+  id: string
+  userId: string
+  name: string
+  createdAt: string
+  exerciseCount: number
+}

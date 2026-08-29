@@ -1,0 +1,21 @@
+.fab {
+  position: fixed;
+  bottom: 92px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--bg-brand-primary);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(62, 62, 224, 0.4); /* brand shadow — rgba can't reference CSS vars */
+  z-index: 100;
+}
+
+/* CSS overrides SVG presentation attribute */
+.fab path {
+  stroke: var(--tx-white-static);
+}

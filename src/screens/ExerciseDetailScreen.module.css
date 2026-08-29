@@ -1,0 +1,240 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg-secondary);
+}
+
+/* Plain back button — no circle, no shadow */
+.backBtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* CSS overrides SVG presentation attribute */
+.backBtn path {
+  stroke: var(--fg-brand);
+}
+
+.scrollContent {
+  flex: 1;
+  padding-bottom: 100px;
+  position: relative;
+}
+
+/* GIF section: white background, gif 216×216 centered */
+.gifSection {
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px 24px;
+}
+
+.gif {
+  width: 216px;
+  height: 216px;
+  object-fit: contain;
+}
+
+.body {
+  padding: 32px 24px 0;
+}
+
+.name {
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  color: var(--tx-primary);
+  line-height: 1.25;
+  margin: 0 0 20px;
+}
+
+/* Metadata: PRIMARY / SECONDARY / EQUIPMENT */
+.metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.metaRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.metaLabel {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-spacing);
+  text-transform: var(--text-label-transform);
+  color: var(--tx-secondary);
+}
+
+.metaValue {
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  color: var(--tx-primary);
+  text-align: right;
+}
+
+/* Max weight card */
+.maxCard {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.maxWeight {
+  font-size: var(--text-input-pr-size);
+  font-weight: var(--text-input-pr-weight);
+  color: var(--tx-primary);
+  line-height: 1;
+  margin: 0;
+}
+
+.maxUnit {
+  font-size: var(--text-input-unit-size); /* TODO: verify token — was 28px, theme InputUnit = 36px */
+  font-weight: var(--text-input-unit-weight);
+  color: var(--tx-secondary);
+}
+
+.maxDate {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-secondary);
+  margin: 0;
+}
+
+.maxEmpty {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+/* History section */
+.sectionLabel {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-spacing);
+  text-transform: var(--text-label-transform);
+  color: var(--tx-secondary);
+  margin: 32px 0 16px;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.historyRowOuter {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.deleteBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: var(--bg-danger); /* TODO: verify token — original was #E8513A (orange-red), bg-danger is #CC0F00 */
+  color: var(--tx-white-static);
+  border: none;
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.historyRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  will-change: transform;
+}
+
+/* Left side: weight + PR badge */
+.historyLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.historyWeight {
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  color: var(--tx-primary);
+}
+
+/* PR badge: blue pill, left side next to weight */
+.prBadge {
+  font-size: var(--text-badge-size);
+  font-weight: var(--text-badge-weight);
+  color: var(--tx-white-static);
+  background: var(--bg-brand-primary);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.historyDate {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-secondary);
+}
+
+.bottomSpacer {
+  height: 20px;
+}
+
+/* Fixed LOG WEIGHT button */
+.logBtnWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 24px 40px;
+  background: linear-gradient(to top, var(--bg-secondary) 65%, transparent);
+  pointer-events: none;
+}
+
+.logBtn {
+  width: 100%;
+  padding: 17px;
+  background: var(--bg-brand-primary);
+  color: var(--tx-white-static);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--text-button-size);
+  font-weight: var(--text-button-weight);
+  letter-spacing: var(--text-button-spacing);
+  text-transform: var(--text-button-transform);
+  cursor: pointer;
+  font-family: inherit;
+  pointer-events: all;
+}

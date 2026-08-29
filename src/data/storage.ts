@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase'
-import type { Exercise, LogEntry } from '../types'
+import type { Exercise, LogEntry, WorkoutSet } from '../types'
 
 // ─── Exercises ────────────────────────────────────────────────────────────────
 
@@ -12,7 +12,7 @@ export async function saveExercise(exercise: Exercise): Promise<void> {
     secondary_muscles: exercise.secondaryMuscles,
     equipment: exercise.equipment,
     gif_url: exercise.gifUrl,
-  })
+  }, { ignoreDuplicates: true })
   if (error) throw error
 }
 
@@ -41,7 +41,7 @@ export async function getMyExercises(userId: string): Promise<Exercise[]> {
     if (!seen.has(row.exercise_id)) {
       seen.add(row.exercise_id)
       if (row.exercises) {
-        exercises.push(rowToExercise(row.exercises as ExerciseRow))
+        exercises.push(rowToExercise(row.exercises as unknown as ExerciseRow))
       }
     }
   }
@@ -87,6 +87,15 @@ export async function deleteLogEntry(id: string): Promise<void> {
   if (error) throw error
 }
 
+export async function deleteAllLogEntries(exerciseId: string, userId: string): Promise<void> {
+  const { error } = await supabase
+    .from('log_entries')
+    .delete()
+    .eq('exercise_id', exerciseId)
+    .eq('user_id', userId)
+  if (error) throw error
+}
+
 export async function getMaxWeight(
   exerciseId: string,
   userId: string
@@ -101,6 +110,115 @@ export async function getMaxWeight(
     .single()
   if (error) return null
   return data.weight as number
+}
+
+// ─── Workout sets ─────────────────────────────────────────────────────────────
+
+export async function getWorkoutSets(userId: string): Promise<WorkoutSet[]> {
+  let result = await supabase
+    .from('workout_sets')
+    .select('*')
+    .eq('user_id', userId)
+    .order('position', { ascending: true, nullsFirst: false })
+    .order('created_at', { ascending: false })
+
+  // Fall back if position column doesn't exist yet
+  if (result.error) {
+    result = await supabase
+      .from('workout_sets')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+  }
+
+  const { data, error } = result
+  if (error) throw error
+
+  const sets: WorkoutSet[] = await Promise.all(
+    (data ?? []).map(async (row) => {
+      const { count } = await supabase
+        .from('set_exercises')
+        .select('id', { count: 'exact', head: true })
+        .eq('set_id', row.id)
+      return {
+        id: row.id,
+        userId: row.user_id,
+        name: row.name,
+        createdAt: row.created_at,
+        exerciseCount: count ?? 0,
+      }
+    })
+  )
+  return sets
+}
+
+export async function createWorkoutSet(userId: string, name: string): Promise<WorkoutSet> {
+  const { data, error } = await supabase
+    .from('workout_sets')
+    .insert({ user_id: userId, name })
+    .select()
+    .single()
+  if (error) throw error
+  return {
+    id: data.id,
+    userId: data.user_id,
+    name: data.name,
+    createdAt: data.created_at,
+    exerciseCount: 0,
+  }
+}
+
+export async function deleteWorkoutSet(id: string): Promise<void> {
+  const { error } = await supabase.from('workout_sets').delete().eq('id', id)
+  if (error) throw error
+}
+
+export async function getSetExercises(setId: string): Promise<Exercise[]> {
+  const { data, error } = await supabase
+    .from('set_exercises')
+    .select('position, exercises(*)')
+    .eq('set_id', setId)
+    .order('position', { ascending: true })
+  if (error) throw error
+  return (data ?? [])
+    .filter((row) => row.exercises)
+    .map((row) => rowToExercise(row.exercises as unknown as ExerciseRow))
+}
+
+export async function addExerciseToSet(setId: string, exerciseId: string): Promise<void> {
+  const { count } = await supabase
+    .from('set_exercises')
+    .select('id', { count: 'exact', head: true })
+    .eq('set_id', setId)
+  const { error } = await supabase
+    .from('set_exercises')
+    .insert({ set_id: setId, exercise_id: exerciseId, position: count ?? 0 }, { ignoreDuplicates: true } as never)
+  if (error) throw error
+}
+
+export async function updateSetPositions(setIds: string[]): Promise<void> {
+  await Promise.all(
+    setIds.map((id, position) =>
+      supabase.from('workout_sets').update({ position }).eq('id', id)
+    )
+  )
+}
+
+export async function updateSetExercisePositions(setId: string, exerciseIds: string[]): Promise<void> {
+  await Promise.all(
+    exerciseIds.map((exerciseId, position) =>
+      supabase.from('set_exercises').update({ position }).eq('set_id', setId).eq('exercise_id', exerciseId)
+    )
+  )
+}
+
+export async function removeExerciseFromSet(setId: string, exerciseId: string): Promise<void> {
+  const { error } = await supabase
+    .from('set_exercises')
+    .delete()
+    .eq('set_id', setId)
+    .eq('exercise_id', exerciseId)
+  if (error) throw error
 }
 
 // ─── Row mappers ──────────────────────────────────────────────────────────────

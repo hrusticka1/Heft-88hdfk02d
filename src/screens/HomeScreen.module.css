@@ -1,0 +1,99 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg-secondary);
+}
+
+.header {
+  padding: 32px 24px 24px;
+  background: var(--bg-secondary);
+}
+
+.pillsWrapper {
+  background: var(--bg-secondary);
+  padding-bottom: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.pills {
+  display: flex;
+  gap: 12px;
+  padding: 0 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.pills::-webkit-scrollbar {
+  display: none;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px 160px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.swipeOuter {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.deleteBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: var(--bg-danger, #FF3B30);
+  color: var(--tx-white-static, #fff);
+  border: none;
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.swipeInner {
+  will-change: transform;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 0;
+}
+
+.emptyTitle {
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  line-height: 1.2;
+  color: var(--tx-primary);
+  margin: 0;
+  text-align: center;
+}
+
+.emptySubtitle {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  line-height: 1.4;
+  color: var(--tx-secondary);
+  margin: 0;
+  text-align: center;
+}

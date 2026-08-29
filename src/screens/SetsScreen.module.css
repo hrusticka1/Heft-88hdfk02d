@@ -1,0 +1,287 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+  background: var(--bg-secondary);
+}
+
+.header {
+  padding: 32px 24px 24px;
+  background: var(--bg-secondary);
+}
+
+.eyebrow {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-spacing);
+  text-transform: var(--text-label-transform);
+  color: var(--tx-secondary);
+  margin: 0 0 6px;
+}
+
+.title {
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  color: var(--tx-primary);
+  margin: 0 0 6px;
+  line-height: 1.15;
+}
+
+.subtitle {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-secondary);
+  margin: 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px 80px;
+}
+
+/* ─── Set list ─────────────────────────────────────────────────────────────── */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ─── Swipeable card ────────────────────────────────────────────────────────── */
+
+.swipeOuter {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.deleteBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: var(--bg-danger, #FF3B30);
+  color: var(--tx-white-static, #fff);
+  border: none;
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.swipeInner {
+  will-change: transform;
+}
+
+.setCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.countBadge {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--bg-brand-secondary, #EDEDFC);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.countNumber {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--fg-brand, #3E3EE0);
+  line-height: 1;
+}
+
+.setInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.setName {
+  font-size: var(--text-h3-size, 17px);
+  font-weight: 700;
+  color: var(--tx-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.setMeta {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-secondary);
+}
+
+.chevron {
+  color: var(--tx-tertiary);
+  flex-shrink: 0;
+}
+
+/* ─── New set button ────────────────────────────────────────────────────────── */
+
+.newSetBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 24px;
+  padding: 16px;
+  border: 1.5px solid var(--fg-brand, #3E3EE0);
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--fg-brand, #3E3EE0);
+  font-size: var(--text-button-size);
+  font-weight: var(--text-button-weight);
+  letter-spacing: var(--text-button-spacing);
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Empty state ──────────────────────────────────────────────────────────── */
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.emptyTitle {
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  color: var(--tx-primary);
+  margin: 0;
+}
+
+.emptySubtitle {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-secondary);
+  margin: 0;
+}
+
+/* ─── Modal ────────────────────────────────────────────────────────────────── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 500;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.modal {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 28px 24px 32px;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modalTitle {
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  color: var(--tx-primary);
+  margin: 0;
+}
+
+.modalInput {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  color: var(--tx-primary);
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.modalInput:focus {
+  border-color: var(--fg-brand, #3E3EE0);
+}
+
+.modalInput::placeholder {
+  color: var(--tx-tertiary);
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 15px;
+  border: 1.5px solid var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  background: none;
+  font-size: var(--text-button-size);
+  font-weight: var(--text-button-weight);
+  letter-spacing: var(--text-button-spacing);
+  color: var(--tx-secondary);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.createBtn {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--bg-brand-primary);
+  font-size: var(--text-button-size);
+  font-weight: var(--text-button-weight);
+  letter-spacing: var(--text-button-spacing);
+  color: var(--tx-white-static);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.createBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.modalError {
+  font-size: var(--text-description-size);
+  font-weight: var(--text-description-weight);
+  color: var(--tx-danger, #d32f2f);
+  margin: 0;
+}
