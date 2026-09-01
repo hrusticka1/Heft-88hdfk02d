@@ -88,7 +88,32 @@ export default function SetDetailScreen() {
     return formatWeight(ex.maxWeight, ex.equipment)
   }
 
-  if (loading) return null
+  if (loading) return (
+    <div className={styles.screen}>
+      <div className={styles.scrollContent}>
+        <button className={styles.backBtn} onClick={() => navigate(-1)} aria-label="Back">
+          <svg width="10" height="18" viewBox="0 0 10 18" fill="none">
+            <path d="M9 1L1 9l8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        <div className={styles.header} style={{ paddingTop: 60 }}>
+          <div className={styles.skeletonLine} style={{ width: '45%', height: 28, marginBottom: 8 }} />
+          <div className={styles.skeletonLine} style={{ width: '25%', height: 14 }} />
+        </div>
+        <div className={styles.body}>
+          {[1, 2, 3].map((i) => (
+            <div key={i} className={styles.skeletonRow}>
+              <div className={styles.skeletonThumb} />
+              <div style={{ flex: 1 }}>
+                <div className={styles.skeletonLine} style={{ width: '60%' }} />
+                <div className={styles.skeletonLine} style={{ width: '35%', marginTop: 6 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
 
   return (
     <div className={styles.screen}>

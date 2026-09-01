@@ -109,7 +109,20 @@ export default function SetsScreen() {
     if (e.key === 'Escape') closeModal()
   }
 
-  if (loading) return null
+  if (loading) return (
+    <div className={styles.screen}>
+      <div className={styles.header}>
+        <p className={styles.eyebrow}>WHAT YOU DO</p>
+        <h1 className={styles.title}>Sets</h1>
+        <p className={styles.subtitle}>Plans you&apos;ve stacked. Tap to lift.</p>
+      </div>
+      <div className={styles.content}>
+        <div className={styles.list}>
+          {[1, 2, 3].map((i) => <SkeletonSetCard key={i} />)}
+        </div>
+      </div>
+    </div>
+  )
 
   return (
     <div className={styles.screen}>
@@ -180,6 +193,20 @@ export default function SetsScreen() {
           </div>
         </div>
       )}
+    </div>
+  )
+}
+
+// ─── SkeletonSetCard ──────────────────────────────────────────────────────────
+
+function SkeletonSetCard() {
+  return (
+    <div className={styles.setCard} style={{ pointerEvents: 'none' }}>
+      <div className={styles.skeletonBadge} />
+      <div className={styles.setInfo}>
+        <div className={styles.skeletonLine} style={{ width: '55%' }} />
+        <div className={styles.skeletonLine} style={{ width: '35%', marginTop: 6 }} />
+      </div>
     </div>
   )
 }

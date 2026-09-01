@@ -94,7 +94,11 @@ export default function HomeScreen() {
       </div>
 
       <div className={styles.content}>
-        {loading ? null : isEmpty ? (
+        {loading ? (
+          <div className={styles.list}>
+            {[1, 2, 3, 4].map((i) => <SkeletonExerciseRow key={i} />)}
+          </div>
+        ) : isEmpty ? (
           <div className={styles.emptyState}>
             <p className={styles.emptyTitle}>No workout yet</p>
             <p className={styles.emptySubtitle}>Tap + to log your first exercise.</p>
@@ -120,6 +124,22 @@ export default function HomeScreen() {
       </div>
 
       <FAB onClick={() => navigate('/search')} />
+    </div>
+  )
+}
+
+// ─── SwipeableExerciseCard ────────────────────────────────────────────────────
+
+// ─── SkeletonExerciseRow ──────────────────────────────────────────────────────
+
+function SkeletonExerciseRow() {
+  return (
+    <div className={styles.skeletonRow}>
+      <div className={styles.skeletonThumb} />
+      <div className={styles.skeletonText}>
+        <div className={styles.skeletonLine} style={{ width: '60%' }} />
+        <div className={styles.skeletonLine} style={{ width: '35%', marginTop: 6 }} />
+      </div>
     </div>
   )
 }

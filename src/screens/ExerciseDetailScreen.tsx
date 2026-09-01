@@ -60,7 +60,29 @@ export default function ExerciseDetailScreen() {
     setEntries(logs)
   }
 
-  if (loading || !exercise) return null
+  if (loading || !exercise) return (
+    <div className={styles.screen}>
+      <div className={styles.scrollContent}>
+        <button className={styles.backBtn} onClick={() => navigate(-1)} aria-label="Back">
+          <svg width="10" height="18" viewBox="0 0 10 18" fill="none">
+            <path d="M9 1L1 9l8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        <div className={styles.gifSection}>
+          <div className={styles.skeletonGif} />
+        </div>
+        <div className={styles.body}>
+          <div className={styles.skeletonLine} style={{ width: '70%', height: 24, marginBottom: 32 }} />
+          <div className={styles.skeletonCard} />
+          <div style={{ marginTop: 24 }}>
+            {[1, 2, 3].map((i) => (
+              <div key={i} className={styles.skeletonLine} style={{ width: `${70 - i * 10}%`, marginBottom: 12 }} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 
   // Entry with the highest weight — used for max card display and date
   const maxEntry = entries.reduce<LogEntry | null>((best, e) => {
